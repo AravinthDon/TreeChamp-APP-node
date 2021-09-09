@@ -1,0 +1,23 @@
+#map {
+    height: 100%;
+    width: 100%;
+    
+  }
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+#navbar-container {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    color: white;
+    font-size: x-large;
+    margin-left: 20px;
+}
