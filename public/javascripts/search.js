@@ -8,12 +8,15 @@
 const searchURL =
   "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/search.php";
 
+const signupURL =
+  "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/user/signup.php";
+
 // Co ordinates for belfast
 const belfast = { lat: 54.59771792303645, lng: -5.9300474334489905 };
 
 const icons = {
   man: "https://maps.google.com/mapfiles/kml/shapes/man.png",
-  tree: "/images/tree.png"
+  tree: "/images/tree.png",
 };
 // For stroing the map
 var basicMap;
@@ -47,6 +50,9 @@ function success(pos) {
 
   // Add User Marker
   addUserMarker(userLocation, basicMap);
+
+  // get Trees around the user
+  getTrees(userLocation, 200);
 }
 // Error callback function for the geolocation api
 function error(err) {
@@ -69,8 +75,6 @@ function buildMap() {
 }
 
 function addUserMarker(userLocation, map) {
-  
-  
   // The marker, positioned at current Location
   new google.maps.Marker({
     position: userLocation,
@@ -86,7 +90,7 @@ function addUserMarker(userLocation, map) {
 
 /**
  * Add Tree Markers to the map
- * 
+ *
  * @param {*} treeData
  * @param {*} map
  */
@@ -100,7 +104,7 @@ function addTreeMarkers(treeData, map) {
       let treeMarker = new google.maps.Marker({
         position: latLng,
         map: map,
-        icon: icons['tree']
+        icon: icons["tree"],
       });
       //markerCount++;
       // let treeInfoNode =
@@ -149,15 +153,15 @@ function addTreeMarkers(treeData, map) {
 function getTrees(coord, surround) {
   // console.log("Getting Trees...");
   var sendData = {
-    latitude: coord['lat'],
-    longitude: coord['lng'],
+    latitude: coord["lat"],
+    longitude: coord["lng"],
     surround: surround,
   };
   // console.log("Sending Request..." );
   // console.log(sendData);
   $.getJSON(searchURL, sendData, function (data, textStatus, jqXHR) {
     //console.log(data);
-    
+
     addTreeMarkers(data, basicMap);
     //console.log(data);
   });
@@ -170,4 +174,72 @@ function getLocation(success, error, options) {
   } else {
     console.log("Geolocation is not supported by this browser.");
   }
+}
+
+$("#showNearbyTrees").on("click", (e) => {
+  getLocation(success, error, options);
+  e.preventDefault();
+});
+
+/**
+ * JS for the tabbed content
+ */
+const tabs = document.querySelectorAll(".tabs li");
+const tabContentBoxes = document.querySelectorAll("#tab-content > div");
+
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((item) => item.classList.remove("is-active"));
+    tab.classList.add("is-active");
+
+    const target = tab.dataset.target;
+
+    tabContentBoxes.forEach((box) => {
+      if (box.getAttribute("id") === target) {
+        box.classList.remove("is-hidden");
+      } else {
+        box.classList.add("is-hidden");
+      }
+    });
+  });
+});
+
+/**
+ * JS for modal
+ */
+$("#login").click(function () {
+  $(".modal").addClass("is-active");
+});
+
+$(".modal-background").click(function () {
+  $(".modal").removeClass("is-active");
+});
+
+/**
+ * JS for signup
+ */
+
+function signupFunc() {
+  let username = $("#signup-username").val();
+  let password = $("#signup-password").val();
+
+  var sendData = {
+    username: username,
+    password: password,
+    type: "Public",
+  };
+
+  //console.log(sendData);
+
+  $.ajax({
+    type: "POST",
+    url: searchURL,
+    data: sendData,
+    dataType: "json",
+    encode: true,
+  }).done(function (data) {
+    console.log(data);
+  });
+
+
 }
