@@ -1,0 +1,10 @@
+extends layout 
+
+block content
+    .container 
+        .columns.is-mobile
+            each update in updates
+                .column
+                    include includes/card.pug 
+
+block scripts 

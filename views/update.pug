@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    form#upload-form
+        div 
+            label(for="title") Title: 
+            input( type="text", id="title")
+        div 
+            label(for="description") Description: 
+            input( type="text", id="description")
+        div
+            label(for="upload")
+            input(type="file", class="form-control-file", name="upload", id="upload", placeholder="upload-image-file", aria-describedby="fileHelpId")
+            small(id="ffileHelpId", class="form-text text-muted") Please select the image to be uploaded...
+        div
+            label(for="caption") Caption: 
+            input(type="text", id="caption")
+        button(type="submit" class="btn btn-primary" value="Upload") Submit
+    

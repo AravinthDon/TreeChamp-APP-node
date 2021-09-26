@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+    div(id="tree-detail")
+        table
+            th Property
+            th Value
+            each value, key in treedata
+                tr 
+                    td #{key}
+                    if value
+                        td #{value}
+                    else
+                        td Not Found
+                    
+                
+block append scripts
+    script(src="/javascripts/tree.js")

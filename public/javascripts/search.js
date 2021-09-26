@@ -128,9 +128,9 @@ function addTreeMarkers(treeData, map) {
         `<div>` +
         `<div>` +
         `<footer class="card-footer">` +
-        `<a href="#" class="card-footer-item">Update</a>` +
-        `<a href="#" class="card-footer-item">Open</a>` +
-        `<a href="#" class="card-footer-item">See all Updates</a>` +
+        `<a href='/update/${tree["ID"]}' class="card-footer-item">Update</a>` +
+        `<a href='/tree/${tree["ID"]}' class="card-footer-item">More Details</a>` +
+        `<a href='/updates/${tree["ID"]}' class="card-footer-item">See all Updates</a>` +
         `</footer>` +
         `<div>`;
       // Create the infoWindows
