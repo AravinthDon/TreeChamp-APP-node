@@ -12,6 +12,7 @@ cloudinary.config({
 
 router.get("/", function (req, res, next) {
   var loggedin = false;
+
   res.render("index", { title: "TreeChamp", loggedin: loggedin });
 });
 
@@ -29,7 +30,7 @@ router.post("/upload/:treeid", function(req, res, next) {
       // https://cloudinary.com/documentation/upload_images
       cloudinary.uploader.upload(files.upload.path, result => {
 
-          // This will return the output after the code is exercuted both in the terminal and web browser
+          // This will return the output after the code is executed both in the terminal and web browser
           // When successful, the output will consist of the metadata of the uploaded file one after the other. These include the name, type, size and many more.
           console.log(result)
           if (result.public_id) {

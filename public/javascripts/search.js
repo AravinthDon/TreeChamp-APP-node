@@ -8,9 +8,6 @@
 const searchURL =
   "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/search.php";
 
-const signupURL =
-  "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/user/signup.php";
-
 // Co ordinates for belfast
 const belfast = { lat: 54.59771792303645, lng: -5.9300474334489905 };
 
@@ -181,65 +178,13 @@ $("#showNearbyTrees").on("click", (e) => {
   e.preventDefault();
 });
 
-/**
- * JS for the tabbed content
- */
-const tabs = document.querySelectorAll(".tabs li");
-const tabContentBoxes = document.querySelectorAll("#tab-content > div");
-
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((item) => item.classList.remove("is-active"));
-    tab.classList.add("is-active");
-
-    const target = tab.dataset.target;
-
-    tabContentBoxes.forEach((box) => {
-      if (box.getAttribute("id") === target) {
-        box.classList.remove("is-hidden");
-      } else {
-        box.classList.add("is-hidden");
-      }
-    });
-  });
+$("#login").on("click", (e) => {
+  window.location.href = "/user/login";
 });
 
-/**
- * JS for modal
- */
-$("#login").click(function () {
-  $(".modal").addClass("is-active");
+$("#register").on("click", (e) => {
+  window.location.href = "/user/register";
+  e.preventDefault();
 });
 
-$(".modal-background").click(function () {
-  $(".modal").removeClass("is-active");
-});
 
-/**
- * JS for signup
- */
-
-function signupFunc() {
-  let username = $("#signup-username").val();
-  let password = $("#signup-password").val();
-
-  var sendData = {
-    username: username,
-    password: password,
-    type: "Public",
-  };
-
-  //console.log(sendData);
-
-  $.ajax({
-    type: "POST",
-    url: searchURL,
-    data: sendData,
-    dataType: "json",
-    encode: true,
-  }).done(function (data) {
-    console.log(data);
-  });
-
-
-}
