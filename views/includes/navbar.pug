@@ -1,0 +1,15 @@
+// -includes/navbar.pug
+
+div(id='navbar-container')
+      nav(class="navbar", role="navigation", aria-label="main navigation")
+        a(class="navbar-item", href="#")
+          img(src="/images/treechamp_logo.png", width="112", height="28")
+        
+        div(class="navbar-end")
+          div(class="navbar-item")
+            div(class="buttons")
+              if loggedin
+                a(class="button is-primary", id="logout") Log out
+              else 
+                a(class="button is-primary", id="register") Register
+                a(class="button is-primary", id="login") Log in

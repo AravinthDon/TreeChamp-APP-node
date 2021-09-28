@@ -1,45 +1,43 @@
-// $(function() {
+var treeLocation = {};
+var treeid;
 
-//     // check for the treeid in the url Parameters
-//     const urlParams = new URLSearchParams(window.location.search);
-//     var treeid;
+var icon = {
+    tree: "/images/tree.png"
+};
 
-//     console.log(urlParams);
+function showTree() {
+    // how to get tree data
+    //var pathname = window.location.pathname;
+  console.log(treeLocation);
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: treeLocation,
+    // scaleControl: false,
+    // fullscreenControl: false,
+    // zoomControl: false,
+  });
+
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: treeLocation,
+    map: map,
+    icon: icon['tree']
+  });
+}
+
+function setData(lat,lng, treeid) {
+    treeLocation['lat'] = lat;
+    treeLocation['lng'] = lng;
+    treeid = treeid;
+    //console.log("treeid: "+ treeid);
+
+    $("#all-updates").on('click', (e) => {
+        window.location.href=`/updates/${treeid}`;
+    });
     
-//     var getURL = "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/tree.php";
-    
-//     if(urlParams.has('treeid')) {
-//         treeid = urlParams.get('treeid');
-//     }
+    $("#update").on('click', (e) => {
+        window.location.href=`/update/${treeid}`;
+    });
+}
 
-//     $.get(getURL, {treeid: treeid}, function(response) {
-//         console.log(response);
-//         if(response['status'] == "Success") {
-//             buildTable(response['data'][0]);
-//         } else if(response['status'] = "Error") {
-//             console.log(response['message']);
-//         }
-//     });
-
-//     function buildTable(tree) {
-        
-//         let tableString = 
-//         `<table>` +
-//         `<tr> <th> Tree Details </th></tr>` +
-//         `<tr> <td> Tree Type </td> <td> ${tree['TreeType']}</td> </tr>` +
-//         `<tr> <td> Species Type </td> <td> ${tree['SpeciesType']} </td> </tr>` +
-//         `<tr> <td> Species </td> <td> ${tree['Species']} </td> </tr>` +
-//         `<tr> <td> Age </td> <td> ${tree['Age']} </td> </tr>` +
-//         `<tr> <td> Tree Surround </td> <td> ${tree['TreeSurround']} </td> </tr>` +        
-//         `<tr> <td> Vigour </td> <td> ${tree['Vigour']} </td> </tr>` +
-//         `<tr> <td> Condition </td> <td> ${tree['Condition']} </td> </tr>` +
-//         `<tr> <td> Description </td> <td> ${tree['Description']} </td> </tr>` +
-//         `<tr> <td> Diameter </td> <td> ${tree['Diameter']} (cms) </td> </tr>` +
-//         `<tr> <td> Spread Radius </td> <td> ${tree['SpreadRadius']}(m) </td> </tr>` +
-//         `<tr> <td> Height </td> <td> ${tree['Height']} (m) </td> </tr>` +
-//         `</table>`;
-
-//         $("#tree-detail").append(tableString);
-//     }
-// });
 

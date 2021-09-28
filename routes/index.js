@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const cloudinary = require("cloudinary");
 const request = require("request");
+const { InsufficientStorage } = require("http-errors");
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -22,29 +23,33 @@ router.get("/update/:treeid", function (req, res, next) {
 
 router.post("/upload/:treeid", function(req, res, next) {
   // parse a file upload
-  const form = new Formidable();
+  // const form = new Formidable();
 
-  form.parse(req, (err, fields, files) => {
+  // form.parse(req, (err, fields, files) => {
 
-      // Find Cloudinary documentation using the link below
-      // https://cloudinary.com/documentation/upload_images
-      cloudinary.uploader.upload(files.upload.path, result => {
+  //     // Find Cloudinary documentation using the link below
+  //     // https://cloudinary.com/documentation/upload_images
+  //     cloudinary.uploader.upload(files.upload.path, result => {
 
-          // This will return the output after the code is executed both in the terminal and web browser
-          // When successful, the output will consist of the metadata of the uploaded file one after the other. These include the name, type, size and many more.
-          console.log(result)
-          if (result.public_id) {
+  //         // This will return the output after the code is executed both in the terminal and web browser
+  //         // When successful, the output will consist of the metadata of the uploaded file one after the other. These include the name, type, size and many more.
+  //         console.log(result)
+  //         if (result.public_id) {
           
-          // The results in the web browser will be returned inform of plain text formart. We shall use the util that we required at the top of this code to do this.
-              res.writeHead(200, { 'content-type': 'text/plain' });
-              res.write('received uploads:\n\n');
-              res.end(util.inspect({ fields: fields, files: files }));
-          }
-      });
-  });
+  //         // The results in the web browser will be returned inform of plain text formart. We shall use the util that we required at the top of this code to do this.
+  //             res.writeHead(200, { 'content-type': 'text/plain' });
+  //             res.write('received uploads:\n\n');
+  //             res.end(util.inspect({ fields: fields, files: files }));
+  //         }
+  //     });
+  // });
 });
 
 router.get("/updates/:treeid", function(req, res, next) {
+
+  // Work on no updates
+  // Implement authentication route
+
   var treeid = req.params.treeid;
   var updates;  
 
@@ -92,9 +97,10 @@ router.get("/tree/:treeid", function (req, resp, next) {
 
     treedata = json['data'];
     console.log(treedata);
-    resp.render("tree", {treedata: treedata});
+    resp.render("tree", {treedata: treedata, lat: treedata['Latitude'], long: treedata['Longitude'], treeid: treedata['ID']});
   });
 });
+
 
 
 module.exports = router;

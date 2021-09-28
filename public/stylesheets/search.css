@@ -1,8 +1,14 @@
-#map {
+#body-box {
+    display: flex;
     height: 100%;
-    width: 100%;
-    
-  }
+    flex-flow: column;
+}
+
+#map {
+    /* height: 100%;
+    width: 100%; */
+    flex-grow: 1;
+}
 
 
 html, body {
