@@ -6,30 +6,30 @@ block append css
 block content 
     .overall-container
         include includes/navbar.pug
-        
-        .container
-            .row
-                .map-container.col-12
-                    #map
-            .row
-                .details-container.col-12
-                    div(id="tree-detail")
-                        table
-                            th Property
-                            th Value
-                            each value, key in treedata
-                                tr 
-                                    td #{key}
-                                    if value
-                                        td #{value}
-                                    else
-                                        td Not Available
-        .container 
-            .row.update-links.justify-content-end 
-                .all-updates.col
-                    .button#all-updates All updates  
-                .update.col
-                    .button#update Update
+        .container   
+            .section
+                .container 
+                    .columns.is-mobile
+                        .map-container.column.is-7
+                            #map
+                        .details-container.column.is-5
+                            div(id="tree-detail")
+                                table
+                                    th Property
+                                    th Value
+                                    each value, key in treedata
+                                        tr 
+                                            td #{key}
+                                            if value
+                                                td #{value}
+                                            else
+                                                td Not Available
+            .container 
+                .row.update-links.justify-content-end 
+                    .all-updates.col
+                        .button#all-updates All updates  
+                    .update.col
+                        .button#update Update
                 
 block append scripts
     script(src="/javascripts/tree.js")

@@ -1,19 +1,44 @@
 extends layout
 
+append css
+    link(rel='stylesheet', href='/stylesheets/update.css')
 block content
-    form#upload-form
-        div 
-            label(for="title") Title: 
-            input( type="text", id="title")
-        div 
-            label(for="description") Description: 
-            input( type="text", id="description")
-        div
-            label(for="upload")
-            input(type="file", class="form-control-file", name="upload", id="upload", placeholder="upload-image-file", aria-describedby="fileHelpId")
-            small(id="ffileHelpId", class="form-text text-muted") Please select the image to be uploaded...
-        div
-            label(for="caption") Caption: 
-            input(type="text", id="caption")
-        button(type="submit" class="btn btn-primary" value="Upload") Submit
-    
+    .overall-container
+        include includes/navbar.pug
+        .section 
+            .container
+                h1.title Add an update
+                .columns 
+                    .column.box     
+                        figure.image 
+                            img#upload_widget(src="/images/addimage.png", alt="Tap to add an image")
+                            button.delete.is-large#image-delete    
+                    .column.box 
+                        .form-box
+                            .field 
+                                label.label#title(for="") Title
+                                .control
+                                    input.input(type="text", placeholder="Title for the update", required)
+                            .field 
+                                label.label#description(for="") Description
+                                .control
+                                    textarea.textarea.is-small(placeholder="Description for the update", required)
+                            .field 
+                                label.label#caption(for="") Caption for image
+                                .control
+                                    input.input(type="text", placeholder="Add a caption to the image", required)
+                            .field 
+                                label(for="" class="checkbox") #[input(type='checkbox', id="issue", name='hidden', value=1, checked='')] Mark as Issue
+        
+                            .field 
+                                .control
+                                    button(id="submit" class="button is-primary" value="Upload") Submit
+
+                        //div Upload image : 
+                            button(id="upload_widget" class="cloudinary-button") Upload files
+
+block append scripts 
+    script(src="https://widget.cloudinary.com/v2.0/global/all.js")
+    script(src="/javascripts/update.js")
+    script.
+        setData(#{treeid});

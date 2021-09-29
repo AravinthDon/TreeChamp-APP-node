@@ -1,15 +1,24 @@
 // -includes/navbar.pug
 
 div(id='navbar-container')
+    .container 
       nav(class="navbar", role="navigation", aria-label="main navigation")
-        a(class="navbar-item", href="#")
-          img(src="/images/treechamp_logo.png", width="112", height="28")
+        .navbar-brand
+          a(class="navbar-item", href="/")
+            img(src="/images/treechamp_logo.png", width="120", height="28")
+        .navbar-end
+          a(class="navbar-burger" id="burger-icon")
+              span 
+              span 
+              span 
+          .navbar-menu#navbar-links
+                #login-links
+                    a.navbar-item(href="") My updates 
+                    a.navbar-item(href="") Change Password 
+                    a.navbar-item(href="") Log out 
+                #anonymous-links.buttons
+                  a.navbar-item(class="button is-primary", id="register") Register
+                  a.navbar-item(class="button is-light", id="login") Log in 
+                           
+
         
-        div(class="navbar-end")
-          div(class="navbar-item")
-            div(class="buttons")
-              if loggedin
-                a(class="button is-primary", id="logout") Log out
-              else 
-                a(class="button is-primary", id="register") Register
-                a(class="button is-primary", id="login") Log in
