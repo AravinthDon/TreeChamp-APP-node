@@ -1,3 +1,4 @@
+
 var updateData = {};
 var postURL =
   "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/update.php";
@@ -23,23 +24,21 @@ $("#submit").on("click", (e) => {
   //         xhr.setRequestHeader("appid", "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn");
   //       }
   // });
-  $.ajax({
+  
+    $.ajax({
     type: "POST",
     url: postURL,
-    cors: true,
     data: updateData,
-    dataType: "json",
-    beforeSend: function (xhr) {
-    //   xhr.setRequestHeader("uid", 7);
-    //   xhr.setRequestHeader(
-    //     "appid",
-    //     "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn"
-    //   );
-    // xhr.setRequestHeader("Access-Control-Request-Headers" , "access-control-allow-methods,access-control-allow-origin");
-    },
+    // beforeSend: function (xhr) {
+    // //   xhr.setRequestHeader("uid", 7);
+    // //   xhr.setRequestHeader(
+    // //     "appid",
+    // //     "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn"
+    // //   );
+    // // xhr.setRequestHeader("Access-Control-Request-Headers" , "access-control-allow-methods,access-control-allow-origin");
+    // },
     headers: {
     //"Access-Control-Request-Headers": "access-control-allow-methods,access-control-allow-origin,appid,uid",
-      "Access-Control-Allow-Origin": "*",
         "uid" : '7',
         "appid" : "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn",
     },
@@ -56,7 +55,24 @@ $("#submit").on("click", (e) => {
     error: function (request, response, error) {
       console.log(request, response, error);
     },
-  });
+  }); 
+
+  /** 
+   * Testing the dummy route
+   */
+
+  // $.ajax({
+  //   url: "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/dummy.php",
+  //   method: 'POST',
+  //   data: {},
+  //   headers : {
+  //     "uid" : 7,
+  //     "appid" : "s"
+  //   },
+  //   success: function(response) {
+  //     console.log(response);
+  //   }
+  // });
   // $.post(postURL, updateData, function(response) {
   //     console.log(response);
   // });

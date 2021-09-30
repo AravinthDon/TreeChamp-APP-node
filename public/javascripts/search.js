@@ -178,13 +178,5 @@ $("#showNearbyTrees").on("click", (e) => {
   e.preventDefault();
 });
 
-$("#login").on("click", (e) => {
-  window.location.href = "/user/login";
-});
-
-$("#register").on("click", (e) => {
-  window.location.href = "/user/register";
-  e.preventDefault();
-});
 
 

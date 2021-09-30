@@ -12,17 +12,28 @@ block content
                                 .control.has-icons-left
                                     input(type="text" id="username" placeholder="Aravinth" class="input" required)
                                     span(class="icon is-small is-left")
-                                    i(class="fa fa-envelope")
+                                        i(class="fa fa-envelope")
                             .field
                                 label(for="" class="label") Password
                                 .control.has-icons-left
                                     input(type="password" id="password" placeholder="*******" class="input" required)
                                     span(class="icon is-small is-left")
-                                    i(class="fa fa-lock")
+                                        i(class="fa fa-lock")
                             .field
                                 label(for="" class="checkbox") #[input(type='checkbox', id="remember", name='hidden', value=1, checked='')] Remember me
                             .field
                                 button(class="button is-success", id="login-button") Login 
+                            
+        .modal#success-modal
+            .modal-background 
+            .modal-content
+                .box You are now logged in! Redirecting....
+
+        .modal#error-modal
+            .modal-background 
+            .modal-content
+                .box Please try again!    
+        
 
 block append scripts 
     script(src="/javascripts/user.js")

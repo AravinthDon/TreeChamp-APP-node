@@ -6,19 +6,20 @@ div(id='navbar-container')
         .navbar-brand
           a(class="navbar-item", href="/")
             img(src="/images/treechamp_logo.png", width="120", height="28")
-        .navbar-end
           a(class="navbar-burger" id="burger-icon")
               span 
               span 
               span 
-          .navbar-menu#navbar-links
-                #login-links
-                    a.navbar-item(href="") My updates 
-                    a.navbar-item(href="") Change Password 
-                    a.navbar-item(href="") Log out 
-                #anonymous-links.buttons
-                  a.navbar-item(class="button is-primary", id="register") Register
-                  a.navbar-item(class="button is-light", id="login") Log in 
+        .navbar-end.navbar-menu#navbar-links
+            a.navbar-item#home(href="/") Home
+            a.navbar-item#profile(href="#") My profile 
+            //a.navbar-item#change-password(href="#") Change Password 
+            a.navbar-item#logout(href="#") Log out 
+            .buttons
+              a.navbar-item#register(class="button is-primary") Register
+              a.navbar-item#login(class="button is-light") Log in
+                  
+                   
                            
 
         

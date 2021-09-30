@@ -1,3 +1,5 @@
+var userid;
+
 $("#burger-icon").on('click', (e) => {
     $("#navbar-links").toggleClass('is-active');
 });
@@ -6,8 +8,35 @@ $("#burger-icon").on('click', (e) => {
 function stateChange(loggedin) {
     
     if(loggedin) {
-        $("#anonymous-links").hide();
+        $("#register").hide();
+        $("#login").hide();
+        
+        userid = sessionStorage.getItem('userid');
+        appid = sessionStorage.getItem('appid');
+        //console.log(userid);
+        $("#profile").on("click", (e) => {
+            window.location.href = `/user/profile/${userid}/${appid}`;
+            e.preventDefault();
+        });
+        $("#logout").on("click", (e) => {
+            sessionStorage.removeItem('userid');
+            sessionStorage.removeItem('appid');
+            window.location.href = "/";
+            e.preventDefault();
+        });
     } else {
-        $("#login-links").hide();
+        $("#profile").hide();
+        $("#logout").hide();
     }
 }
+
+$("#login").on("click", (e) => {
+    window.location.href = "/user/login";
+    e.preventDefault();
+});
+  
+$("#register").on("click", (e) => {
+    window.location.href = "/user/register";
+    e.preventDefault();
+});
+

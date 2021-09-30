@@ -46,15 +46,14 @@ router.get("/updates/:treeid", function(req, res, next) {
     // check if the status is success or error
     if(json['status'] == "Success") {
       updates = json['data'];
-      res.render("updates", { "updates" : updates });
+      res.render("updates", { "updatesFound": true, "updates" : updates, treeid: treeid });
       //console.log(updates);
     } else {
-      // render for no updates found
+      res.render("updates", {"updatesFound": false, treeid: treeid})
     }
-    
-  });
-  
+  }); 
 });
+
 router.get("/tree/:treeid", function (req, resp, next) {
   var treeid = req.params.treeid;
   var treedata;
@@ -75,7 +74,5 @@ router.get("/tree/:treeid", function (req, resp, next) {
     resp.render("tree", {treedata: treedata, lat: treedata['Latitude'], long: treedata['Longitude'], treeid: treedata['ID']});
   });
 });
-
-
 
 module.exports = router;
