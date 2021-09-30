@@ -1,0 +1,39 @@
+extends layout 
+
+block append css 
+    link(rel='stylesheet', href='/stylesheets/tree.css')
+
+block content 
+    .overall-container
+        include includes/navbar.pug
+        .container   
+            .section
+                .container 
+                    .columns
+                        .map-container.column.is-7
+                            #map
+                        .details-container.column.is-5
+                            div(id="tree-detail")
+                                table
+                                    th Property
+                                    th Value
+                                    each value, key in treedata
+                                        tr 
+                                            td #{key}
+                                            if value
+                                                td #{value}
+                                            else
+                                                td Not Available
+            .container 
+                .row.update-links.justify-content-end 
+                    .all-updates.col
+                        .button#all-updates All updates  
+                    .update.col
+                        .button#update Update
+                
+block append scripts
+    script(src="/javascripts/tree.js")
+    script.
+        setData(#{lat}, #{long}, #{treeid});
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW6nfcW0gciSVpQ3oE4pnyP46hEGOzAq4&callback=showTree&libraries=&v=weekly", async)
+    

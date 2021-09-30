@@ -1,0 +1,56 @@
+extends layout 
+
+block append css 
+    link(rel='stylesheet', href='/stylesheets/profile.css')
+
+block content 
+    .overall-container
+        include includes/navbar.pug
+        .profile-container.section 
+            .container 
+                if userFound
+                    .columns 
+                        .column.box
+                            figure.image.is-square 
+                                img(src="/images/profilepic.png")
+                        .column 
+                            .content
+                                h1.title Your Profile
+                                p 
+                                    h1.title.is-5 Username: #{username} 
+                                    div
+                                        a#change-password(href="") Change password  
+                                    div
+                                        a(href="/user/logout") Log out
+                else 
+                    .content
+                                h1.title No Profile Found
+                                p  
+                                    a(href=`/update/${treeid}`) click here  
+                                    | to make an update
+        
+        .modal#password-modal
+            .modal-background 
+            .modal-content
+                .box
+                    form#password-form.box
+                        .field
+                            label(for="" class="label") Password
+                            .control.has-icons-left
+                                input(type="password", id="password", placeholder="*******", class="input", required)
+                                span(class="icon is-small is-left")
+                                    i(class="fa fa-lock")
+                        .field
+                            label(for="" class="label") Re-Enter Password
+                            .control.has-icons-left
+                                input(type="password", id="match-password", placeholder="*******", class="input", required)
+                                span(class="icon is-small is-left")
+                                    i(class="fa fa-lock")
+                            p.help#is-danger(style="display:none") Passwords don't match
+                        .field.is-grouped(style="justify-content: flex-end")
+                            .control
+                                    button.button.is-link.is-light#modal-close Cancel 
+                            .control
+                                    button.button.is-link#change-password Change
+block append scripts 
+    script(src="/javascripts/profile.js")

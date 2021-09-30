@@ -1,0 +1,15 @@
+.delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* maybe add z index*/
+    z-index: 3;
+}
+
+#upload_widget:hover {
+    background-color: aqua !important
+}
+
+.column.box {
+    margin:10px;
+}

@@ -1,0 +1,25 @@
+// -includes/navbar.pug
+
+div(id='navbar-container')
+    .container 
+      nav(class="navbar", role="navigation", aria-label="main navigation")
+        .navbar-brand
+          a(class="navbar-item", href="/")
+            img(src="/images/treechamp_logo.png", width="120", height="28")
+          a(class="navbar-burger" id="burger-icon")
+              span 
+              span 
+              span 
+        .navbar-end.navbar-menu#navbar-links
+            a.navbar-item#home(href="/") Home
+            a.navbar-item#profile(href="#") My profile 
+            //a.navbar-item#change-password(href="#") Change Password 
+            a.navbar-item#logout(href="#") Log out 
+            .buttons
+              a.navbar-item#register(class="button is-primary") Register
+              a.navbar-item#login(class="button is-light") Log in
+                  
+                   
+                           
+
+        

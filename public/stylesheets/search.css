@@ -1,23 +1,36 @@
-#map {
+#body-box {
+    display: flex;
     height: 100%;
-    width: 100%;
-    
-  }
-
-html {
-    height: 100%;
+    flex-flow: column;
 }
 
-body {
+#map {
+    /* height: 100%;
+    width: 100%; */
+    flex-grow: 1;
+}
+
+
+html, body {
     height: 100%;
     margin: 0;
 }
 
-#navbar-container {
+/* #navbar-container {
     position: absolute;
     z-index: 4;
     top: 0;
     color: white;
     font-size: x-large;
     margin-left: 20px;
+} */
+
+#userLocation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    transition: background 0.25s;
 }
