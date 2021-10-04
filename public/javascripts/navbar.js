@@ -41,5 +41,5 @@ $("#register").on("click", (e) => {
 });
 
 $(function() {
-    console.log("Navbar");
+    //console.log("Navbar");
 });

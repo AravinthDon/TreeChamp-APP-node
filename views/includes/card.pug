@@ -5,5 +5,11 @@
     .card-content
         .content #{update.description}
     .card-footer
-        a.card-footer-item(href="") View
+        a.card-footer-item(href=`/update/details/${update.ID}`) View 
+        if update.issue && update.solved
+            p.card-footer-item(style="color:green") Solved
+        else 
+            if update.issue 
+                p.card-footer-item(style="color:red") Issue Pending
+        
 

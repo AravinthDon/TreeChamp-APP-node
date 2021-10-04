@@ -1,5 +1,4 @@
 var treeLocation = {};
-var treeid;
 
 var icon = {
     tree: "/images/tree.png"
@@ -28,16 +27,16 @@ function showTree() {
 function setData(lat,lng, treeid) {
     treeLocation['lat'] = lat;
     treeLocation['lng'] = lng;
-    treeid = treeid;
-    //console.log("treeid: "+ treeid);
+    // treeid = treeid;
+    // console.log("treeid: "+ treeid);
 
-    $("#all-updates").on('click', (e) => {
-        window.location.href=`/updates/${treeid}`;
-    });
+    // $("#all-updates").on('click', (e) => {
+    //     window.location.href=`/updates/${treeid}`;
+    // });
     
-    $("#update").on('click', (e) => {
-        window.location.href=`/update/${treeid}`;
-    });
+    // $("#update").on('click', (e) => {
+    //     window.location.href=`/update/${treeid}`;
+    // });
 }
 
 
