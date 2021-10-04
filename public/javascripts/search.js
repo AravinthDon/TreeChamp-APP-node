@@ -125,9 +125,10 @@ function addTreeMarkers(treeData, map) {
         `<div>` +
         `<div>` +
         `<footer class="card-footer">` +
-        `<a href='/update/${tree["ID"]}' class="card-footer-item">Update</a>` +
+        `<p id="ptreeid" style="display:none">${tree['ID']}</p>`+
+        `<a href='#' class="card-footer-item" onclick="updateButton()">Update</a>` +
         `<a href='/tree/${tree["ID"]}' class="card-footer-item">More Details</a>` +
-        `<a href='/updates/${tree["ID"]}' class="card-footer-item">See all Updates</a>` +
+        `<a href='#' class="card-footer-item" onclick="allUpdatesButton()">See all Updates</a>` +
         `</footer>` +
         `<div>`;
       // Create the infoWindows
@@ -177,6 +178,3 @@ $("#showNearbyTrees").on("click", (e) => {
   getLocation(success, error, options);
   e.preventDefault();
 });
-
-
-

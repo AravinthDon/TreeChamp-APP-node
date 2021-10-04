@@ -1,0 +1,25 @@
+extends layout.pug 
+
+block content 
+    .overall-container
+        include includes/navbar.pug
+        .container   
+            .section
+                .container 
+                    .columns 
+                        if post 
+                            .card-image 
+                                figure.image.is-square 
+                                    img(src=imgURL)
+                        .card-content 
+                            .media 
+                                .media-content 
+                                    .title.is-4 #{title}
+                            .content 
+                                p 
+                                    ul 
+                                        li Description: #{description}
+                                        li Issue: #{issue}
+                                        li Solved: #{solved}
+
+                    

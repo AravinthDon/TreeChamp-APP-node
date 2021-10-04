@@ -1,5 +1,5 @@
 var loggedin = false;
-
+var treeid;
 function getCookie(name) {
     var dc = document.cookie;
     var prefix = name + "=";
@@ -34,7 +34,7 @@ function logoutUser() {
 }
 $(function() {
 
-    console.log("Status");
+    //console.log("Status");
     if(window.sessionStorage.getItem('userid') && window.sessionStorage.getItem('appid')) {
         loggedin = true;
     }
@@ -42,4 +42,48 @@ $(function() {
     stateChange(loggedin);
 
     // Implement login checks on the button
+});
+
+function updateButton() {
+    console.log("Update Button clicked");
+
+    if(!loggedin) {
+        $("#login-alert-modal").css("display", "flex");
+    } else {
+        
+        treeid = document.getElementById("ptreeid").innerHTML.trim();
+        // redirect to update page
+        console.log(treeid);
+        window.location.href=`/update/${treeid}`;
+    }
+
+    return false;
+}
+
+function allUpdatesButton() {
+    if(!loggedin) {
+        $("#login-alert-modal").css("display", "flex");
+    } else {
+        // get the treeid
+        treeid = document.getElementById("ptreeid").innerHTML.trim();
+        // redirect to update page
+        console.log(treeid);
+        window.location.href=`/updates/${treeid}`;
+    }
+
+    return false;
+}
+
+$("#close-login-modal").on("click", (e) => {
+    $("#login-alert-modal").css("display", "none");
+});
+
+$("#mlogin-button").on("click", (e) => {
+    window.location.href = "/user/login";
+    e.preventDefault();
+});
+  
+$("#mregister-button").on("click", (e) => {
+    window.location.href = "/user/register";
+    e.preventDefault();
 });

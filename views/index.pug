@@ -12,6 +12,18 @@ block content
     div(id="userLocation") 
       button(class="button is-rounded is-primary" id="showNearbyTrees") Show nearby trees
 
+    .modal#login-alert-modal
+      .modal-background 
+      .modal-card
+        header.modal-card-head 
+          p.modal-card-title User Alert 
+          button.delete#close-login-modal(aria-label="close")
+        section.modal-card-body
+          p Please login or Register to continue! 
+        footer.modal-card-foot(style="justify-content: flex-end") 
+          button.button#mregister-button Register  
+          button.button.is-success#mlogin-button Login
+                    
 block append scripts
   script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW6nfcW0gciSVpQ3oE4pnyP46hEGOzAq4&callback=initialize&libraries=&v=weekly", async)
   script(src='/javascripts/search.js')

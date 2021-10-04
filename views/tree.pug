@@ -27,10 +27,23 @@ block content
             .container 
                 .row.update-links.justify-content-end 
                     .all-updates.col
-                        .button#all-updates All updates  
+                        .button#all-updates-button(onclick="allUpdatesButton()") All updates  
                     .update.col
-                        .button#update Update
-                
+                        .button#update-button(onclick="updateButton()") Update
+            p#ptreeid(style="display:none") #{treeid} 
+
+            .modal#login-alert-modal
+                .modal-background 
+                .modal-card
+                    header.modal-card-head 
+                        p.modal-card-title User Alert 
+                        button.delete#close-login-modal(aria-label="close")
+                    section.modal-card-body
+                        p Please login or Register to continue! 
+                    footer.modal-card-foot(style="justify-content: flex-end") 
+                        button.button#mregister-button Register  
+                        button.button.is-success#mlogin-button Login 
+                         
 block append scripts
     script(src="/javascripts/tree.js")
     script.
