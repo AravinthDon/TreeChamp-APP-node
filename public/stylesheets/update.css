@@ -1,7 +1,7 @@
 .delete {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 7px;
     /* maybe add z index*/
     z-index: 3;
 }

@@ -1,4 +1,5 @@
 var loggedin = false;
+
 function getCookie(name) {
     var dc = document.cookie;
     var prefix = name + "=";
@@ -32,9 +33,13 @@ function logoutUser() {
   window.location.href="/";
 }
 $(function() {
+
+    console.log("Status");
     if(window.sessionStorage.getItem('userid') && window.sessionStorage.getItem('appid')) {
         loggedin = true;
     }
 
     stateChange(loggedin);
+
+    // Implement login checks on the button
 });

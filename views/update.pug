@@ -12,21 +12,21 @@ block content
                     .column.box     
                         figure.image 
                             img#upload_widget(src="/images/addimage.png", alt="Tap to add an image")
-                            button.delete.is-large#image-delete    
+                            button.delete.is-large#image-delete   
                     .column.box 
                         .form-box
                             .field 
-                                label.label#title(for="") Title
+                                label.label(for="") Title
                                 .control
-                                    input.input(type="text", placeholder="Title for the update", required)
+                                    input.input#title(type="text", placeholder="Title for the update", required)
                             .field 
-                                label.label#description(for="") Description
+                                label.label(for="") Description
                                 .control
-                                    textarea.textarea.is-small(placeholder="Description for the update", required)
+                                    textarea.textarea.is-small#description(placeholder="Description for the update", required)
                             .field 
-                                label.label#caption(for="") Caption for image
+                                label.label(for="") Caption for image
                                 .control
-                                    input.input(type="text", placeholder="Add a caption to the image", required)
+                                    input.input#caption(type="text", placeholder="Add a caption to the image", required)
                             .field 
                                 label(for="" class="checkbox") #[input(type='checkbox', id="issue", name='hidden', value=1, checked='')] Mark as Issue
         

@@ -16,7 +16,8 @@ $("#change-password").on("click", (e) => {
     console.log("Here");
     console.log(password, matchpassword);
     
-    if(password != matchpassword) {
+    // bug trim spaces
+    if(password.equals(matchpassword)) {
         $(".help").toggle();
         e.preventDefault();
     } else {

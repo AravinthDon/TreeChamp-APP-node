@@ -86,8 +86,12 @@ var myWidget = cloudinary.createUploadWidget(
   },
   (error, result) => {
     if (!error && result && result.event === "success") {
-      console.log("Done! Here is the image info: ", result.info);
+      //console.log("Done! Here is the image info: ", result.info);
       updateData["imgURL"] = result.info["secure_url"];
+
+      // update the image on the display
+      $("#upload_widget").attr("src", updateData["imgURL"]);
+      $("#image-delete").addClass("has-background-danger");
     }
   }
 );
@@ -98,5 +102,16 @@ var myWidget = cloudinary.createUploadWidget(
 
 $("#upload_widget").on("click", (e) => {
   myWidget.open();
+  e.preventDefault();
+});
+
+$("#image-delete").on("click", (e) => {
+  $("#upload_widget").attr("src", "/images/addimage.png");
+  $("#image-delete").removeClass("has-background-danger");
+  // delete the image URL in the updateData if available
+  if(updateData["imgURL"]) {
+    delete updateData.imgURL;
+  }
+
   e.preventDefault();
 });

@@ -40,3 +40,6 @@ $("#register").on("click", (e) => {
     e.preventDefault();
 });
 
+$(function() {
+    console.log("Navbar");
+});
