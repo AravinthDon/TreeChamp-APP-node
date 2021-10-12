@@ -15,7 +15,7 @@ function storesessionUser(userid, apikey) {
 $("#register-button").on("click", (e) => {
   let username = $("#username").val();
   let password = $("#password").val();
-  let remember = $("#remember").val() == 1 ? true : false;
+  let remember = $("#remember").is(":checked");
 
   if (username && password) {
     var sendData = {
@@ -78,14 +78,15 @@ $("#register-button").on("click", (e) => {
 $("#login-button").on("click", (e) => {
   let username = $("#username").val();
   let password = $("#password").val();
-  let remember = $("#remember").val() == 1 ? true : false;
-
+  let remember = $("#remember").is(":checked");
+  let type = $("#admin").is(":checked") ? "Admin": "Public";
+  
   //console.log(remember);
   if (username && password) {
     var sendData = {
       username: username,
       password: password,
-      type: "Public",
+      type: type,
     };
 
     //console.log(sendData);

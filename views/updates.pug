@@ -18,8 +18,10 @@ block content
                     h1.title(style="text-align: center") No updates Found
                     figure.image 
                         img(src="/images/noupdates.png")
-                    p
-                        a(href=`/update/${treeid}`) click here  
-                        | to make an update
+                    if treeid
+                        p
+                            a(href=`/update/${treeid}`) click here  
+                            | to make an update
 
-
+block append scripts 
+    script(src="/javascripts/updates.js")

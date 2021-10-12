@@ -1,15 +1,31 @@
 // -include/card.pug
 .card 
+    if update.posts.length
+        .card-image 
+            figure.image.is-by4by3 
+                each post in update.posts
+                    img(src=post.imgURL)
+                    - break;
     .card-header    
         p.card-header-title #{update.title}
     .card-content
         .content #{update.description}
     .card-footer
-        a.card-footer-item(href=`/update/details/${update.ID}`) View 
-        if update.issue && update.solved
-            p.card-footer-item(style="color:green") Solved
-        else 
+        if usertype=="Admin"
             if update.issue 
-                p.card-footer-item(style="color:red") Issue Pending
-        
-
+                a.card-footer-item(href=`/update/details/${update.ID}`) View 
+                if update.issue && update.solved
+                    p.card-footer-item(style="color:green" id=`issue-resolved-${update.ID}`) Solved 
+                    p.card-footer-item(style="color:red; display:none") 
+                        button.button.is-success(onclick=`solveIssue(${update.ID})`, id=`resolve-issue-${update.ID}`) Mark Solved
+                if update.issue && (update.solved == false)
+                    p.card-footer-item(style="color:green; display: none" id=`issue-resolved-${update.ID}`) Solved 
+                    p.card-footer-item(style="color:red") 
+                        button.button.is-success(onclick=`solveIssue(${update.ID})`, id=`resolve-issue-${update.ID}`) Mark Solved
+        else 
+            a.card-footer-item(href=`/update/details/${update.ID}`) View
+            if update.issue && update.solved
+                    p.card-footer-item(style="color:green") Solved
+            else 
+                    p.card-footer-item(style="color:red") Issue: Pending
+        //p#updateid(style="display:none")= update.ID

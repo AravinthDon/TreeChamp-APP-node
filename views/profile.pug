@@ -51,6 +51,14 @@ block content
                             .control
                                     button.button.is-link.is-light#modal-close Cancel 
                             .control
-                                    button.button.is-link#change-password Change
+                                    button.button.is-link#change-password-btn Change
+        
+        .modal#password-success 
+            .modal-background 
+            .modal-content 
+                .box 
+                    p Password successfully changed!
+                    .close-div(style="display: flex;justify-content: flex-end;")
+                        button.button.is-link#success-modal-close Done
 block append scripts 
     script(src="/javascripts/profile.js")

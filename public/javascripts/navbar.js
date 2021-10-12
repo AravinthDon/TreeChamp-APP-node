@@ -11,6 +11,11 @@ function stateChange(loggedin) {
         $("#register").hide();
         $("#login").hide();
         
+        //console.log("Usertype: ", usertype);
+        if(usertype == "Public") {
+            console.log(usertype);
+            $("#updates-navbar").hide();
+        }
         userid = sessionStorage.getItem('userid');
         appid = sessionStorage.getItem('appid');
         //console.log(userid);
@@ -24,9 +29,12 @@ function stateChange(loggedin) {
             window.location.href = "/";
             e.preventDefault();
         });
+
+        
     } else {
         $("#profile").hide();
         $("#logout").hide();
+        $("#updates-navbar").hide();
     }
 }
 
@@ -40,6 +48,11 @@ $("#register").on("click", (e) => {
     e.preventDefault();
 });
 
+$("#updates-navbar").on("click", (e) => {
+    window.location.href = `/updates/all/${usertype}`;
+    e.preventDefault();
+
+});
 $(function() {
     //console.log("Navbar");
 });

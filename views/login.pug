@@ -20,14 +20,16 @@ block content
                                     span(class="icon is-small is-left")
                                         i(class="fa fa-lock")
                             .field
-                                label(for="" class="checkbox") #[input(type='checkbox', id="remember", name='hidden', value=1, checked='')] Remember me
+                                label(for="" class="checkbox") #[input(type='checkbox', id="remember", name='hidden')] Remember me
+                            .field
+                                label(for="" class="checkbox") #[input(type='checkbox', id="admin", name='hidden')] Admin
                             .field
                                 button(class="button is-success", id="login-button") Login 
                             
         .modal#success-modal
             .modal-background 
             .modal-content
-                .box You are now logged in! Redirecting....
+                .box You are now logged in! Redirecting.... 
 
         .modal#error-modal
             .modal-background 

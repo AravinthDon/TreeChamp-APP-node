@@ -61,13 +61,15 @@ router.get("/update/details/:updateid", function (req, res, next) {
     }
   });
 });
-router.get("/updates/:treeid", function (req, res, next) {
+
+router.get("/updates/:treeid?", function (req, res, next) {
   // Work on no updates
   // Implement authentication route
 
+  var usertype = req.query.status;
   var treeid = req.params.treeid;
   var updates;
-
+  //console.log(usertype);
   const options = {
     url: `http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/update.php?treeid=${treeid}`,
     method: "GET",
@@ -78,18 +80,19 @@ router.get("/updates/:treeid", function (req, res, next) {
       appid: "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn",
     },
   };
-
+  console.log(usertype);
   request(options, function (err, resp, body) {
     var json = JSON.parse(body);
 
     // check if the status is success or error
     if (json["status"] == "Success") {
       updates = json["data"];
-      console.log(updates);
+      //console.log(updates);
       res.render("updates", {
         updatesFound: true,
         updates: updates,
         treeid: treeid,
+        usertype: usertype
       });
       //console.log(updates);
     } else {
@@ -98,6 +101,9 @@ router.get("/updates/:treeid", function (req, res, next) {
   });
 });
 
+router.get("/updates/all/:usertype", function(req, res, next) {
+  res.render("updates", {updatesFound: false})
+});
 router.get("/tree/:treeid", function (req, resp, next) {
   var treeid = req.params.treeid;
   var treedata;
@@ -114,7 +120,7 @@ router.get("/tree/:treeid", function (req, resp, next) {
     let json = JSON.parse(body);
 
     treedata = json["data"];
-    console.log(treedata);
+    //console.log(treedata);
     resp.render("tree", {
       treedata: treedata,
       lat: treedata["Latitude"],

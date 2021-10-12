@@ -1,5 +1,7 @@
 var loggedin = false;
 var treeid;
+var usertype = "Public";
+
 function getCookie(name) {
     var dc = document.cookie;
     var prefix = name + "=";
@@ -39,13 +41,36 @@ $(function() {
         loggedin = true;
     }
 
-    stateChange(loggedin);
+    
 
+    var profileURL = "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/user/profile.php"
+    // Find the usertype
+    $.ajax({
+        url: profileURL,
+        type: 'GET',
+        headers: {
+            "uid" : window.sessionStorage.getItem('userid'),
+            "appid" : window.sessionStorage.getItem('appid')
+        }
+    }).done(function(data){
+        
+        if(data['status'] == "Success") {
+            user = data['data'];
+            usertype = user['type'];
+        } else {
+            usertype = "Public";
+        }
+        stateChange(loggedin);
+    }).fail(function(error) {
+        console.log(error);
+    });
+
+    
     // Implement login checks on the button
 });
 
 function updateButton() {
-    console.log("Update Button clicked");
+    //console.log("Update Button clicked");
 
     if(!loggedin) {
         $("#login-alert-modal").css("display", "flex");
@@ -68,7 +93,7 @@ function allUpdatesButton() {
         treeid = document.getElementById("ptreeid").innerHTML.trim();
         // redirect to update page
         console.log(treeid);
-        window.location.href=`/updates/${treeid}`;
+        window.location.href=`/updates/${treeid}?status=${usertype}`;
     }
 
     return false;
