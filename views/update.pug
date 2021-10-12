@@ -30,12 +30,22 @@ block content
                             .field 
                                 label(for="" class="checkbox") #[input(type='checkbox', id="issue", name='hidden', value=1, checked='')] Mark as Issue
         
-                            .field 
+                            .field.is-grouped
+                                .control 
+                                    button.button#cancel-upload Cancel
                                 .control
                                     button(id="submit" class="button is-primary" value="Upload") Submit
 
-                        //div Upload image : 
-                            button(id="upload_widget" class="cloudinary-button") Upload files
+        .modal#upload-success 
+            .modal-background 
+            .modal-content 
+                .box 
+                    p Update made successfully!
+                    .field.is-grouped(style="display: flex;justify-content: flex-end; padding: 20px")
+                        .control
+                            button.button#upload-modal-close Close
+                        .control
+                            button.button.is-success#upload-modal-another Add another update
 
 block append scripts 
     script(src="https://widget.cloudinary.com/v2.0/global/all.js")

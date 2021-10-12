@@ -1,0 +1,16 @@
+{
+    "name": "TreeChamp",
+    "short_name": "TreeChamp",
+    "description": "Public data collection used for gathering health status of trees",
+    "icons": [
+      {
+        "src": "/../images/splash-screen.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display": "fullscreen",
+    "theme_color": "#764ABC",
+    "background_color": "#764ABC"
+  }

@@ -28,8 +28,7 @@ function solveIssue(updateid) {
     }).fail((error) => {
         alert("Cannot update");
     });
-
-    
+   
 }
 
 $(function() {

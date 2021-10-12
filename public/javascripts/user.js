@@ -137,3 +137,8 @@ $("#login-button").on("click", (e) => {
     
   }
 });
+
+$("#user-close").on("click", (e) => {
+  window.location.href="/";
+  e.preventDefault();
+})

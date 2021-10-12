@@ -14,22 +14,44 @@ block content
                             #map
                         .details-container.column.is-5
                             div(id="tree-detail")
-                                table
+                                table.table
                                     th Property
                                     th Value
                                     each value, key in treedata
-                                        tr 
-                                            td #{key}
+                                        tr
+                                            case key 
+                                                when "TreeTag"
+                                                    td Tree Tag 
+                                                when "TreeType"
+                                                    td Tree Tag 
+                                                when "SpeciesType"
+                                                    td Species Type 
+                                                when "TreeSurround"
+                                                    td Surrounding 
+                                                when "SpreadRadius"
+                                                    td Spread Radius 
+                                                default
+                                                    td #{key}
                                             if value
-                                                td #{value}
+                                                case key 
+                                                    when "Diameter"
+                                                    when "SpreadRadius"
+                                                    when "Height"
+                                                        if value > 0
+                                                            td #{value} metres
+                                                        else 
+                                                            td Not Available
+                                                    default 
+                                                        td #{value}
                                             else
                                                 td Not Available
-            .container 
-                .row.update-links.justify-content-end 
-                    .all-updates.col
-                        .button#all-updates-button(onclick="allUpdatesButton()") All updates  
-                    .update.col
-                        .button#update-button(onclick="updateButton()") Update
+
+                            .box 
+                                .field.is-grouped.is-justify-content-space-evenly
+                                    .control
+                                       .button#all-updates-button(onclick="allUpdatesButton()") All updates
+                                    .control
+                                        .button#update-button.is-success(onclick="updateButton()") Update
             p#ptreeid(style="display:none") #{treeid} 
 
             .modal#login-alert-modal

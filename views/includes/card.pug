@@ -13,7 +13,7 @@
     .card-footer
         if usertype=="Admin"
             if update.issue 
-                a.card-footer-item(href=`/update/details/${update.ID}`) View 
+                //a.card-footer-item(href=`/update/details/${update.ID}`) View 
                 if update.issue && update.solved
                     p.card-footer-item(style="color:green" id=`issue-resolved-${update.ID}`) Solved 
                     p.card-footer-item(style="color:red; display:none") 
@@ -23,7 +23,7 @@
                     p.card-footer-item(style="color:red") 
                         button.button.is-success(onclick=`solveIssue(${update.ID})`, id=`resolve-issue-${update.ID}`) Mark Solved
         else 
-            a.card-footer-item(href=`/update/details/${update.ID}`) View
+            //a.card-footer-item(href=`/update/details/${update.ID}`) View
             if update.issue && update.solved
                     p.card-footer-item(style="color:green") Solved
             else 

@@ -23,8 +23,11 @@ block content
                                 label(for="" class="checkbox") #[input(type='checkbox', id="remember", name='hidden')] Remember me
                             .field
                                 label(for="" class="checkbox") #[input(type='checkbox', id="admin", name='hidden')] Admin
-                            .field
-                                button(class="button is-success", id="login-button") Login 
+                            .field.is-grouped
+                                .control 
+                                    button.button#user-close Cancel 
+                                .control 
+                                    button(class="button is-success", id="login-button") Login 
                             
         .modal#success-modal
             .modal-background 

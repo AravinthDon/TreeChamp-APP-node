@@ -39,11 +39,12 @@ $("#submit").on("click", (e) => {
     // },
     headers: {
     //"Access-Control-Request-Headers": "access-control-allow-methods,access-control-allow-origin,appid,uid",
-        "uid" : '7',
-        "appid" : "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn",
+        "uid" : window.sessionStorage.getItem('userid'),
+        "appid" : window.sessionStorage.getItem('appid'),
     },
     success: function (response) {
       console.log(response);
+      $("#upload-success").addClass("is-active");
     },
     // headers : {
     //     'Access-Control-Allow-Headers': 'x-requested-with',
@@ -113,5 +114,20 @@ $("#image-delete").on("click", (e) => {
     delete updateData.imgURL;
   }
 
+  e.preventDefault();
+});
+
+$("#cancel-upload").on("click", (e) => {
+  window.location.href = '/';
+  e.preventDefault();
+});
+
+$("#upload-modal-close").on("click", (e) => {
+  window.location.href = "/";
+  e.preventDefault();
+});
+
+$("#upload-modal-another").on("click", (e) => {
+  window.location.reload();
   e.preventDefault();
 });

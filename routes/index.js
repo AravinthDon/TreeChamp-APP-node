@@ -102,8 +102,10 @@ router.get("/updates/:treeid?", function (req, res, next) {
 });
 
 router.get("/updates/all/:usertype", function(req, res, next) {
-  res.render("updates", {updatesFound: false})
+  res.render("updates", {updatesFound: false});
 });
+
+
 router.get("/tree/:treeid", function (req, resp, next) {
   var treeid = req.params.treeid;
   var treedata;

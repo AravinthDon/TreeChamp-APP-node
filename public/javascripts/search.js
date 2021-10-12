@@ -164,6 +164,7 @@ function getTrees(coord, surround) {
     //console.log(data);
   });
 }
+
 // function to get the geolocation api
 function getLocation(success, error, options) {
   //console.log("Getting location...");

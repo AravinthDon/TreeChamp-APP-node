@@ -3,6 +3,8 @@ extends layout.pug
 
 append css
     link(rel='stylesheet', href='/stylesheets/search.css')
+    link(rel='manifest', href='javascripts/pwa.webmanifest')
+    
 
 block content
   div(id='body-box')
@@ -27,5 +29,6 @@ block content
 block append scripts
   script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW6nfcW0gciSVpQ3oE4pnyP46hEGOzAq4&callback=initialize&libraries=&v=weekly", async)
   script(src='/javascripts/search.js')
+  script(src='/javascripts/pwa.js')
 
 
