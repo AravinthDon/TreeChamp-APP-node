@@ -4,8 +4,8 @@
         .card-image 
             figure.image.is-by4by3 
                 each post in update.posts
-                    img(src=post.imgURL)
-                    - break;
+                    if post.imgURL
+                        img(src=post.imgURL)
     .card-header    
         p.card-header-title #{update.title}
     .card-content

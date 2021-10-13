@@ -45,8 +45,9 @@ block content
                         .control
                             button.button#upload-modal-close Close
                         .control
-                            button.button.is-success#upload-modal-another Add another update
+                            button.button.is-success#view-updates(onclick="allUpdatesButton()") View Updates
 
+        p#ptreeid(style="display:none") #{treeid}
 block append scripts 
     script(src="https://widget.cloudinary.com/v2.0/global/all.js")
     script(src="/javascripts/update.js")

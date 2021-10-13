@@ -1,0 +1,71 @@
+extends layout 
+
+block content 
+    include includes/navbar.pug
+    .section 
+        if updatesFound 
+            .container
+                .table-container
+                    .box
+                        h1.title Updates Report
+                        table.table 
+                            each value, key in report 
+                                tr  
+                                    case key 
+                                        when "totalupdates"
+                                            td Total Updates Found 
+                                        when "totalissues"
+                                            td Issues Found 
+                                        when "issuesolved"
+                                            td Issues Solved 
+                                        when "unsolvedissues" 
+                                            td Unsolved issues
+                                    if value 
+                                        case key 
+                                            when "totalupdates"
+                                                td 
+                                                    a(href="#total-updates") #{value} 
+                                            when "totalissues"
+                                                td  #{value} 
+                                            when "issuesolved"
+                                                td 
+                                                    a(href="#solved-issues") #{value}
+                                            when "unsolvedissues" 
+                                                td 
+                                                    a(href="#unsolved-issues") #{value}
+                    .box#total-updates 
+                        h1.title Updates 
+                        .update-container 
+                            .container
+                                .columns 
+                                    each update in updates
+                                        .column
+                                            include includes/card.pug
+                    .box#solved-issues 
+                        h1.title Solved Issues
+                        .issues-container 
+                            .container
+                                .columns 
+                                    each update in solvedIssues 
+                                        .column 
+                                            include includes/card.pug
+                    .box#unsolved-issues 
+                        h1.title Unsolved Issues
+                        .issues-container 
+                            .container
+                                .columns 
+                                    each update in unsolvedIssues 
+                                        .column 
+                                            include includes/card.pug
+        else
+            .container.content
+                h1.title(style="text-align: center") No updates Found
+                figure.image 
+                    img(src="/images/noupdates.png")
+                if treeid
+                    p
+                        a(href=`/update/${treeid}`) click here  
+                        | to make an update
+
+block append scripts 
+    script(src="/javascripts/updates.js")
