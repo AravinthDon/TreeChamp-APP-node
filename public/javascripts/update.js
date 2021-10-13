@@ -1,4 +1,3 @@
-
 var updateData = {};
 var postURL =
   "http://aravichandiran01.lampt.eeecs.qub.ac.uk/treechamp/api/update.php";
@@ -9,56 +8,42 @@ function setData(treeid) {
 }
 
 $("#submit").on("click", (e) => {
-  updateData["uid"] = 7;
-  updateData["appid"] =
-    "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn";
-  updateData["title"] = $("#title").val();
-  updateData["description"] = $("#description").val();
-  updateData["caption"] = $("#caption").val();
-  updateData["issue"] = $("#issue").val();
-  console.log(updateData);
+  updateData["uid"] = window.sessionStorage.getItem("userid");
+  updateData["appid"] = window.sessionStorage.getItem("appid");
 
-  //   $.ajaxSetup({
-  //     beforeSend: function (xhr) {
-  //         xhr.setRequestHeader("uid", 7);
-  //         xhr.setRequestHeader("appid", "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn");
-  //       }
-  // });
-  
+  var title = $("#title").val();
+  var description = $("#description").val();
+
+  if (title && description) {
+    updateData["title"] = title;
+    updateData["description"] = description;
+
+    updateData["caption"] = $("#caption").val();
+    updateData["issue"] = $("#issue").val();
+
     $.ajax({
-    type: "POST",
-    url: postURL,
-    data: updateData,
-    // beforeSend: function (xhr) {
-    // //   xhr.setRequestHeader("uid", 7);
-    // //   xhr.setRequestHeader(
-    // //     "appid",
-    // //     "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn"
-    // //   );
-    // // xhr.setRequestHeader("Access-Control-Request-Headers" , "access-control-allow-methods,access-control-allow-origin");
-    // },
-    headers: {
-    //"Access-Control-Request-Headers": "access-control-allow-methods,access-control-allow-origin,appid,uid",
-        "uid" : window.sessionStorage.getItem('userid'),
-        "appid" : window.sessionStorage.getItem('appid'),
-    },
-    success: function (response) {
-      console.log(response);
-      $("#upload-success").addClass("is-active");
-    },
-    // headers : {
-    //     'Access-Control-Allow-Headers': 'x-requested-with',
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Methods': "GET POST",
-    //     'uid' : 7,
-    //     'appid' : "24A3LKX9dJo8txTat9AIT16u6WOSh3pUEgchBLAod5TepYIhUISNblx87dhYnBmn"
-    // }
-    error: function (request, response, error) {
-      console.log(request, response, error);
-    },
-  }); 
+      type: "POST",
+      url: postURL,
+      data: updateData,
+      headers: {
+        //"Access-Control-Request-Headers": "access-control-allow-methods,access-control-allow-origin,appid,uid",
+        uid: window.sessionStorage.getItem("userid"),
+        appid: window.sessionStorage.getItem("appid"),
+      },
+      success: function (response) {
+        console.log(response);
+        $("#upload-success").addClass("is-active");
+      },
+      error: function (request, response, error) {
+        console.log(request, response, error);
+      },
+    });
 
-  /** 
+  } else {
+    $(".help").toggle();
+  }
+
+  /**
    * Testing the dummy route
    */
 
@@ -110,7 +95,7 @@ $("#image-delete").on("click", (e) => {
   $("#upload_widget").attr("src", "/images/addimage.png");
   $("#image-delete").removeClass("has-background-danger");
   // delete the image URL in the updateData if available
-  if(updateData["imgURL"]) {
+  if (updateData["imgURL"]) {
     delete updateData.imgURL;
   }
 
@@ -118,7 +103,7 @@ $("#image-delete").on("click", (e) => {
 });
 
 $("#cancel-upload").on("click", (e) => {
-  window.location.href = '/';
+  window.location.href = "/";
   e.preventDefault();
 });
 
